@@ -1,0 +1,1500 @@
+
+        }
+        Signal {
+            name: "interpolateChanged"
+            Parameter { name: "arg"; type: "bool" }
+        }
+        Signal {
+            name: "sourceChanged"
+            Parameter { name: "arg"; type: "QUrl" }
+        }
+        Signal {
+            name: "reverseChanged"
+            Parameter { name: "arg"; type: "bool" }
+        }
+        Signal {
+            name: "frameSyncChanged"
+            Parameter { name: "arg"; type: "bool" }
+        }
+        Signal {
+            name: "frameCountChanged"
+            Parameter { name: "arg"; type: "int" }
+        }
+        Signal {
+            name: "frameHeightChanged"
+            Parameter { name: "arg"; type: "int" }
+        }
+        Signal {
+            name: "frameWidthChanged"
+            Parameter { name: "arg"; type: "int" }
+        }
+        Signal {
+            name: "frameXChanged"
+            Parameter { name: "arg"; type: "int" }
+        }
+        Signal {
+            name: "frameYChanged"
+            Parameter { name: "arg"; type: "int" }
+        }
+        Signal {
+            name: "frameRateChanged"
+            Parameter { name: "arg"; type: "double" }
+        }
+        Signal {
+            name: "frameDurationChanged"
+            Parameter { name: "arg"; type: "int" }
+        }
+        Signal {
+            name: "loopsChanged"
+            Parameter { name: "arg"; type: "int" }
+        }
+        Signal {
+            name: "currentFrameChanged"
+            Parameter { name: "arg"; type: "int" }
+        }
+        Method { name: "start" }
+        Method { name: "stop" }
+        Method { name: "restart" }
+        Method {
+            name: "advance"
+            Parameter { name: "frames"; type: "int" }
+        }
+        Method { name: "advance" }
+        Method { name: "pause" }
+        Method { name: "resume" }
+        Method {
+            name: "setRunning"
+            Parameter { name: "arg"; type: "bool" }
+        }
+        Method {
+            name: "setPaused"
+            Parameter { name: "arg"; type: "bool" }
+        }
+        Method {
+            name: "setInterpolate"
+            Parameter { name: "arg"; type: "bool" }
+        }
+        Method {
+            name: "setSource"
+            Parameter { name: "arg"; type: "QUrl" }
+        }
+        Method {
+            name: "setReverse"
+            Parameter { name: "arg"; type: "bool" }
+        }
+        Method {
+            name: "setFrameSync"
+            Parameter { name: "arg"; type: "bool" }
+        }
+        Method {
+            name: "setFrameCount"
+            Parameter { name: "arg"; type: "int" }
+        }
+        Method {
+            name: "setFrameHeight"
+            Parameter { name: "arg"; type: "int" }
+        }
+        Method {
+            name: "setFrameWidth"
+            Parameter { name: "arg"; type: "int" }
+        }
+        Method {
+            name: "setFrameX"
+            Parameter { name: "arg"; type: "int" }
+        }
+        Method {
+            name: "setFrameY"
+            Parameter { name: "arg"; type: "int" }
+        }
+        Method {
+            name: "setFrameRate"
+            Parameter { name: "arg"; type: "double" }
+        }
+        Method {
+            name: "setFrameDuration"
+            Parameter { name: "arg"; type: "int" }
+        }
+        Method { name: "resetFrameRate" }
+        Method { name: "resetFrameDuration" }
+        Method {
+            name: "setLoops"
+            Parameter { name: "arg"; type: "int" }
+        }
+        Method {
+            name: "setCurrentFrame"
+            Parameter { name: "arg"; type: "int" }
+        }
+    }
+    Component {
+        name: "QQuickAnimationController"
+        defaultProperty: "animation"
+        prototype: "QObject"
+        exports: ["QtQuick/AnimationController 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "progress"; type: "double" }
+        Property { name: "animation"; type: "QQuickAbstractAnimation"; isPointer: true }
+        Method { name: "reload" }
+        Method { name: "completeToBeginning" }
+        Method { name: "completeToEnd" }
+    }
+    Component {
+        name: "QQuickAnimationGroup"
+        defaultProperty: "animations"
+        prototype: "QQuickAbstractAnimation"
+        Property { name: "animations"; type: "QQuickAbstractAnimation"; isList: true; isReadonly: true }
+    }
+    Component {
+        name: "QQuickAnimator"
+        prototype: "QQuickAbstractAnimation"
+        exports: ["QtQuick/Animator 2.2"]
+        isCreatable: false
+        exportMetaObjectRevisions: [0]
+        Property { name: "target"; type: "QQuickItem"; isPointer: true }
+        Property { name: "easing"; type: "QEasingCurve" }
+        Property { name: "duration"; type: "int" }
+        Property { name: "to"; type: "double" }
+        Property { name: "from"; type: "double" }
+        Signal {
+            name: "targetItemChanged"
+            Parameter { type: "QQuickItem"; isPointer: true }
+        }
+        Signal {
+            name: "durationChanged"
+            Parameter { name: "duration"; type: "int" }
+        }
+        Signal {
+            name: "easingChanged"
+            Parameter { name: "curve"; type: "QEasingCurve" }
+        }
+        Signal {
+            name: "toChanged"
+            Parameter { name: "to"; type: "double" }
+        }
+        Signal {
+            name: "fromChanged"
+            Parameter { name: "from"; type: "double" }
+        }
+    }
+    Component {
+        name: "QQuickApplication"
+        prototype: "QQmlApplication"
+        exports: ["QtQuick/Application 2.0"]
+        isCreatable: false
+        exportMetaObjectRevisions: [0]
+        Property { name: "active"; type: "bool"; isReadonly: true }
+        Property { name: "layoutDirection"; type: "Qt::LayoutDirection"; isReadonly: true }
+        Property { name: "supportsMultipleWindows"; type: "bool"; isReadonly: true }
+        Property { name: "state"; type: "Qt::ApplicationState"; isReadonly: true }
+        Property { name: "font"; type: "QFont"; isReadonly: true }
+        Property { name: "displayName"; type: "string" }
+        Property { name: "screens"; type: "QQuickScreenInfo"; isList: true; isReadonly: true }
+        Signal {
+            name: "stateChanged"
+            Parameter { name: "state"; type: "Qt::ApplicationState" }
+        }
+    }
+    Component {
+        name: "QQuickBasePositioner"
+        defaultProperty: "data"
+        prototype: "QQuickImplicitSizeItem"
+        exports: [
+            "QtQuick/Positioner 2.0",
+            "QtQuick/Positioner 2.6",
+            "QtQuick/Positioner 2.9"
+        ]
+        isCreatable: false
+        exportMetaObjectRevisions: [0, 6, 9]
+        attachedType: "QQuickPositionerAttached"
+        Property { name: "spacing"; type: "double" }
+        Property { name: "populate"; type: "QQuickTransition"; isPointer: true }
+        Property { name: "move"; type: "QQuickTransition"; isPointer: true }
+        Property { name: "add"; type: "QQuickTransition"; isPointer: true }
+        Property { name: "padding"; revision: 6; type: "double" }
+        Property { name: "topPadding"; revision: 6; type: "double" }
+        Property { name: "leftPadding"; revision: 6; type: "double" }
+        Property { name: "rightPadding"; revision: 6; type: "double" }
+        Property { name: "bottomPadding"; revision: 6; type: "double" }
+        Signal { name: "paddingChanged"; revision: 6 }
+        Signal { name: "topPaddingChanged"; revision: 6 }
+        Signal { name: "leftPaddingChanged"; revision: 6 }
+        Signal { name: "rightPaddingChanged"; revision: 6 }
+        Signal { name: "bottomPaddingChanged"; revision: 6 }
+        Signal { name: "positioningComplete"; revision: 9 }
+        Method { name: "forceLayout"; revision: 9 }
+    }
+    Component {
+        name: "QQuickBehavior"
+        defaultProperty: "animation"
+        prototype: "QObject"
+        exports: ["QtQuick/Behavior 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "animation"; type: "QQuickAbstractAnimation"; isPointer: true }
+        Property { name: "enabled"; type: "bool" }
+    }
+    Component {
+        name: "QQuickBorderImage"
+        defaultProperty: "data"
+        prototype: "QQuickImageBase"
+        exports: ["QtQuick/BorderImage 2.0"]
+        exportMetaObjectRevisions: [0]
+        Enum {
+            name: "TileMode"
+            values: {
+                "Stretch": 0,
+                "Repeat": 1,
+                "Round": 2
+            }
+        }
+        Property { name: "border"; type: "QQuickScaleGrid"; isReadonly: true; isPointer: true }
+        Property { name: "horizontalTileMode"; type: "TileMode" }
+        Property { name: "verticalTileMode"; type: "TileMode" }
+        Property { name: "sourceSize"; type: "QSize"; isReadonly: true }
+    }
+    Component {
+        name: "QQuickBorderImageMesh"
+        prototype: "QQuickShaderEffectMesh"
+        exports: ["QtQuick/BorderImageMesh 2.8"]
+        exportMetaObjectRevisions: [0]
+        Enum {
+            name: "TileMode"
+            values: {
+                "Stretch": 0,
+                "Repeat": 1,
+                "Round": 2
+            }
+        }
+        Property { name: "border"; type: "QQuickScaleGrid"; isReadonly: true; isPointer: true }
+        Property { name: "size"; type: "QSize" }
+        Property { name: "horizontalTileMode"; type: "TileMode" }
+        Property { name: "verticalTileMode"; type: "TileMode" }
+    }
+    Component {
+        name: "QQuickCanvasItem"
+        defaultProperty: "data"
+        prototype: "QQuickItem"
+        exports: ["QtQuick/Canvas 2.0"]
+        exportMetaObjectRevisions: [0]
+        Enum {
+            name: "RenderTarget"
+            values: {
+                "Image": 0,
+                "FramebufferObject": 1
+            }
+        }
+        Enum {
+            name: "RenderStrategy"
+            values: {
+                "Immediate": 0,
+                "Threaded": 1,
+                "Cooperative": 2
+            }
+        }
+        Property { name: "available"; type: "bool"; isReadonly: true }
+        Property { name: "contextType"; type: "string" }
+        Property { name: "context"; type: "QQmlV4Handle"; isReadonly: true }
+        Property { name: "canvasSize"; type: "QSizeF" }
+        Property { name: "tileSize"; type: "QSize" }
+        Property { name: "canvasWindow"; type: "QRectF" }
+        Property { name: "renderTarget"; type: "RenderTarget" }
+        Property { name: "renderStrategy"; type: "RenderStrategy" }
+        Signal {
+            name: "paint"
+            Parameter { name: "region"; type: "QRect" }
+        }
+        Signal { name: "painted" }
+        Signal { name: "imageLoaded" }
+        Method {
+            name: "loadImage"
+            Parameter { name: "url"; type: "QUrl" }
+        }
+        Method {
+            name: "unloadImage"
+            Parameter { name: "url"; type: "QUrl" }
+        }
+        Method {
+            name: "isImageLoaded"
+            type: "bool"
+            Parameter { name: "url"; type: "QUrl" }
+        }
+        Method {
+            name: "isImageLoading"
+            type: "bool"
+            Parameter { name: "url"; type: "QUrl" }
+        }
+        Method {
+            name: "isImageError"
+            type: "bool"
+            Parameter { name: "url"; type: "QUrl" }
+        }
+        Method {
+            name: "getContext"
+            Parameter { name: "args"; type: "QQmlV4Function"; isPointer: true }
+        }
+        Method {
+            name: "requestAnimationFrame"
+            Parameter { name: "args"; type: "QQmlV4Function"; isPointer: true }
+        }
+        Method {
+            name: "cancelRequestAnimationFrame"
+            Parameter { name: "args"; type: "QQmlV4Function"; isPointer: true }
+        }
+        Method { name: "requestPaint" }
+        Method {
+            name: "markDirty"
+            Parameter { name: "dirtyRect"; type: "QRectF" }
+        }
+        Method { name: "markDirty" }
+        Method {
+            name: "save"
+            type: "bool"
+            Parameter { name: "filename"; type: "string" }
+        }
+        Method {
+            name: "toDataURL"
+            type: "string"
+            Parameter { name: "type"; type: "string" }
+        }
+        Method { name: "toDataURL"; type: "string" }
+    }
+    Component {
+        name: "QQuickCloseEvent"
+        prototype: "QObject"
+        Property { name: "accepted"; type: "bool" }
+    }
+    Component {
+        name: "QQuickColorAnimation"
+        prototype: "QQuickPropertyAnimation"
+        exports: ["QtQuick/ColorAnimation 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "from"; type: "QColor" }
+        Property { name: "to"; type: "QColor" }
+    }
+    Component {
+        name: "QQuickColumn"
+        defaultProperty: "data"
+        prototype: "QQuickBasePositioner"
+        exports: ["QtQuick/Column 2.0", "QtQuick/Column 2.6"]
+        exportMetaObjectRevisions: [0, 6]
+    }
+    Component {
+        name: "QQuickCurve"
+        prototype: "QQuickPathElement"
+        Property { name: "x"; type: "double" }
+        Property { name: "y"; type: "double" }
+        Property { name: "relativeX"; type: "double" }
+        Property { name: "relativeY"; type: "double" }
+    }
+    Component {
+        name: "QQuickDoubleValidator"
+        prototype: "QDoubleValidator"
+        exports: ["QtQuick/DoubleValidator 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "locale"; type: "string" }
+        Signal { name: "localeNameChanged" }
+    }
+    Component {
+        name: "QQuickDrag"
+        prototype: "QObject"
+        exports: ["QtQuick/Drag 2.0"]
+        isCreatable: false
+        exportMetaObjectRevisions: [0]
+        attachedType: "QQuickDragAttached"
+        Enum {
+            name: "DragType"
+            values: {
+                "None": 0,
+                "Automatic": 1,
+                "Internal": 2
+            }
+        }
+        Enum {
+            name: "Axis"
+            values: {
+                "XAxis": 1,
+                "YAxis": 2,
+                "XAndYAxis": 3,
+                "XandYAxis": 3
+            }
+        }
+        Property { name: "target"; type: "QQuickItem"; isPointer: true }
+        Property { name: "axis"; type: "Axis" }
+        Property { name: "minimumX"; type: "double" }
+        Property { name: "maximumX"; type: "double" }
+        Property { name: "minimumY"; type: "double" }
+        Property { name: "maximumY"; type: "double" }
+        Property { name: "active"; type: "bool"; isReadonly: true }
+        Property { name: "filterChildren"; type: "bool" }
+        Property { name: "smoothed"; type: "bool" }
+        Property { name: "threshold"; type: "double" }
+    }
+    Component {
+        name: "QQuickDragAttached"
+        prototype: "QObject"
+        Property { name: "active"; type: "bool" }
+        Property { name: "source"; type: "QObject"; isPointer: true }
+        Property { name: "target"; type: "QObject"; isReadonly: true; isPointer: true }
+        Property { name: "hotSpot"; type: "QPointF" }
+        Property { name: "imageSource"; type: "QUrl" }
+        Property { name: "keys"; type: "QStringList" }
+        Property { name: "mimeData"; type: "QVariantMap" }
+        Property { name: "supportedActions"; type: "Qt::DropActions" }
+        Property { name: "proposedAction"; type: "Qt::DropAction" }
+        Property { name: "dragType"; type: "QQuickDrag::DragType" }
+        Signal { name: "dragStarted" }
+        Signal {
+            name: "dragFinished"
+            Parameter { name: "dropAction"; type: "Qt::DropAction" }
+        }
+        Method {
+            name: "start"
+            Parameter { type: "QQmlV4Function"; isPointer: true }
+        }
+        Method {
+            name: "startDrag"
+            Parameter { type: "QQmlV4Function"; isPointer: true }
+        }
+        Method { name: "cancel" }
+        Method { name: "drop"; type: "int" }
+    }
+    Component {
+        name: "QQuickDropArea"
+        defaultProperty: "data"
+        prototype: "QQuickItem"
+        exports: ["QtQuick/DropArea 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "containsDrag"; type: "bool"; isReadonly: true }
+        Property { name: "keys"; type: "QStringList" }
+        Property { name: "drag"; type: "QQuickDropAreaDrag"; isReadonly: true; isPointer: true }
+        Signal { name: "sourceChanged" }
+        Signal {
+            name: "entered"
+            Parameter { name: "drag"; type: "QQuickDropEvent"; isPointer: true }
+        }
+        Signal { name: "exited" }
+        Signal {
+            name: "positionChanged"
+            Parameter { name: "drag"; type: "QQuickDropEvent"; isPointer: true }
+        }
+        Signal {
+            name: "dropped"
+            Parameter { name: "drop"; type: "QQuickDropEvent"; isPointer: true }
+        }
+    }
+    Component {
+        name: "QQuickDropAreaDrag"
+        prototype: "QObject"
+        Property { name: "x"; type: "double"; isReadonly: true }
+        Property { name: "y"; type: "double"; isReadonly: true }
+        Property { name: "source"; type: "QObject"; isReadonly: true; isPointer: true }
+        Signal { name: "positionChanged" }
+    }
+    Component {
+        name: "QQuickDropEvent"
+        prototype: "QObject"
+        Property { name: "x"; type: "double"; isReadonly: true }
+        Property { name: "y"; type: "double"; isReadonly: true }
+        Property { name: "source"; type: "QObject"; isReadonly: true; isPointer: true }
+        Property { name: "keys"; type: "QStringList"; isReadonly: true }
+        Property { name: "supportedActions"; type: "Qt::DropActions"; isReadonly: true }
+        Property { name: "proposedAction"; type: "Qt::DropActions"; isReadonly: true }
+        Property { name: "action"; type: "Qt::DropAction" }
+        Property { name: "accepted"; type: "bool" }
+        Property { name: "hasColor"; type: "bool"; isReadonly: true }
+        Property { name: "hasHtml"; type: "bool"; isReadonly: true }
+        Property { name: "hasText"; type: "bool"; isReadonly: true }
+        Property { name: "hasUrls"; type: "bool"; isReadonly: true }
+        Property { name: "colorData"; type: "QVariant"; isReadonly: true }
+        Property { name: "html"; type: "string"; isReadonly: true }
+        Property { name: "text"; type: "string"; isReadonly: true }
+        Property { name: "urls"; type: "QList<QUrl>"; isReadonly: true }
+        Property { name: "formats"; type: "QStringList"; isReadonly: true }
+        Method {
+            name: "getDataAsString"
+            Parameter { type: "QQmlV4Function"; isPointer: true }
+        }
+        Method {
+            name: "getDataAsArrayBuffer"
+            Parameter { type: "QQmlV4Function"; isPointer: true }
+        }
+        Method {
+            name: "acceptProposedAction"
+            Parameter { type: "QQmlV4Function"; isPointer: true }
+        }
+        Method {
+            name: "accept"
+            Parameter { type: "QQmlV4Function"; isPointer: true }
+        }
+    }
+    Component {
+        name: "QQuickEnterKeyAttached"
+        prototype: "QObject"
+        exports: ["QtQuick/EnterKey 2.6"]
+        isCreatable: false
+        exportMetaObjectRevisions: [6]
+        Property { name: "type"; type: "Qt::EnterKeyType" }
+    }
+    Component {
+        name: "QQuickFlickable"
+        defaultProperty: "flickableData"
+        prototype: "QQuickItem"
+        exports: [
+            "QtQuick/Flickable 2.0",
+            "QtQuick/Flickable 2.10",
+            "QtQuick/Flickable 2.9"
+        ]
+        exportMetaObjectRevisions: [0, 10, 9]
+        Enum {
+            name: "BoundsBehavior"
+            values: {
+                "StopAtBounds": 0,
+                "DragOverBounds": 1,
+                "OvershootBounds": 2,
+                "DragAndOvershootBounds": 3
+            }
+        }
+        Enum {
+            name: "BoundsMovement"
+            values: {
+                "FollowBoundsBehavior": 1
+            }
+        }
+        Enum {
+            name: "FlickableDirection"
+            values: {
+                "AutoFlickDirection": 0,
+                "HorizontalFlick": 1,
+                "VerticalFlick": 2,
+                "HorizontalAndVerticalFlick": 3,
+                "AutoFlickIfNeeded": 12
+            }
+        }
+        Property { name: "contentWidth"; type: "double" }
+        Property { name: "contentHeight"; type: "double" }
+        Property { name: "contentX"; type: "double" }
+        Property { name: "contentY"; type: "double" }
+        Property { name: "contentItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "topMargin"; type: "double" }
+        Property { name: "bottomMargin"; type: "double" }
+        Property { name: "originY"; type: "double"; isReadonly: true }
+        Property { name: "leftMargin"; type: "double" }
+        Property { name: "rightMargin"; type: "double" }
+        Property { name: "originX"; type: "double"; isReadonly: true }
+        Property { name: "horizontalVelocity"; type: "double"; isReadonly: true }
+        Property { name: "verticalVelocity"; type: "double"; isReadonly: true }
+        Property { name: "boundsBehavior"; type: "BoundsBehavior" }
+        Property { name: "boundsMovement"; revision: 10; type: "BoundsMovement" }
+        Property { name: "rebound"; type: "QQuickTransition"; isPointer: true }
+        Property { name: "maximumFlickVelocity"; type: "double" }
+        Property { name: "flickDeceleration"; type: "double" }
+        Property { name: "moving"; type: "bool"; isReadonly: true }
+        Property { name: "movingHorizontally"; type: "bool"; isReadonly: true }
+        Property { name: "movingVertically"; type: "bool"; isReadonly: true }
+        Property { name: "flicking"; type: "bool"; isReadonly: true }
+        Property { name: "flickingHorizontally"; type: "bool"; isReadonly: true }
+        Property { name: "flickingVertically"; type: "bool"; isReadonly: true }
+        Property { name: "dragging"; type: "bool"; isReadonly: true }
+        Property { name: "draggingHorizontally"; type: "bool"; isReadonly: true }
+        Property { name: "draggingVertically"; type: "bool"; isReadonly: true }
+        Property { name: "flickableDirection"; type: "FlickableDirection" }
+        Property { name: "interactive"; type: "bool" }
+        Property { name: "pressDelay"; type: "int" }
+        Property { name: "atXEnd"; type: "bool"; isReadonly: true }
+        Property { name: "atYEnd"; type: "bool"; isReadonly: true }
+        Property { name: "atXBeginning"; type: "bool"; isReadonly: true }
+        Property { name: "atYBeginning"; type: "bool"; isReadonly: true }
+        Property {
+            name: "visibleArea"
+            type: "QQuickFlickableVisibleArea"
+            isReadonly: true
+            isPointer: true
+        }
+        Property { name: "pixelAligned"; type: "bool" }
+        Property { name: "horizontalOvershoot"; revision: 9; type: "double"; isReadonly: true }
+        Property { name: "verticalOvershoot"; revision: 9; type: "double"; isReadonly: true }
+        Property { name: "flickableData"; type: "QObject"; isList: true; isReadonly: true }
+        Property { name: "flickableChildren"; type: "QQuickItem"; isList: true; isReadonly: true }
+        Signal { name: "isAtBoundaryChanged" }
+        Signal { name: "boundsMovementChanged"; revision: 10 }
+        Signal { name: "movementStarted" }
+        Signal { name: "movementEnded" }
+        Signal { name: "flickStarted" }
+        Signal { name: "flickEnded" }
+        Signal { name: "dragStarted" }
+        Signal { name: "dragEnded" }
+        Signal { name: "horizontalOvershootChanged"; revision: 9 }
+        Signal { name: "verticalOvershootChanged"; revision: 9 }
+        Method {
+            name: "resizeContent"
+            Parameter { name: "w"; type: "double" }
+            Parameter { name: "h"; type: "double" }
+            Parameter { name: "center"; type: "QPointF" }
+        }
+        Method { name: "returnToBounds" }
+        Method {
+            name: "flick"
+            Parameter { name: "xVelocity"; type: "double" }
+            Parameter { name: "yVelocity"; type: "double" }
+        }
+        Method { name: "cancelFlick" }
+    }
+    Component {
+        name: "QQuickFlickableVisibleArea"
+        prototype: "QObject"
+        Property { name: "xPosition"; type: "double"; isReadonly: true }
+        Property { name: "yPosition"; type: "double"; isReadonly: true }
+        Property { name: "widthRatio"; type: "double"; isReadonly: true }
+        Property { name: "heightRatio"; type: "double"; isReadonly: true }
+        Signal {
+            name: "xPositionChanged"
+            Parameter { name: "xPosition"; type: "double" }
+        }
+        Signal {
+            name: "yPositionChanged"
+            Parameter { name: "yPosition"; type: "double" }
+        }
+        Signal {
+            name: "widthRatioChanged"
+            Parameter { name: "widthRatio"; type: "double" }
+        }
+        Signal {
+            name: "heightRatioChanged"
+            Parameter { name: "heightRatio"; type: "double" }
+        }
+    }
+    Component {
+        name: "QQuickFlipable"
+        defaultProperty: "data"
+        prototype: "QQuickItem"
+        exports: ["QtQuick/Flipable 2.0"]
+        exportMetaObjectRevisions: [0]
+        Enum {
+            name: "Side"
+            values: {
+                "Front": 0,
+                "Back": 1
+            }
+        }
+        Property { name: "front"; type: "QQuickItem"; isPointer: true }
+        Property { name: "back"; type: "QQuickItem"; isPointer: true }
+        Property { name: "side"; type: "Side"; isReadonly: true }
+    }
+    Component {
+        name: "QQuickFlow"
+        defaultProperty: "data"
+        prototype: "QQuickBasePositioner"
+        exports: ["QtQuick/Flow 2.0", "QtQuick/Flow 2.6"]
+        exportMetaObjectRevisions: [0, 6]
+        Enum {
+            name: "Flow"
+            values: {
+                "LeftToRight": 0,
+                "TopToBottom": 1
+            }
+        }
+        Property { name: "flow"; type: "Flow" }
+        Property { name: "layoutDirection"; type: "Qt::LayoutDirection" }
+        Property { name: "effectiveLayoutDirection"; type: "Qt::LayoutDirection"; isReadonly: true }
+    }
+    Component {
+        name: "QQuickFocusScope"
+        defaultProperty: "data"
+        prototype: "QQuickItem"
+        exports: ["QtQuick/FocusScope 2.0"]
+        exportMetaObjectRevisions: [0]
+    }
+    Component {
+        name: "QQuickFontLoader"
+        prototype: "QObject"
+        exports: ["QtQuick/FontLoader 2.0"]
+        exportMetaObjectRevisions: [0]
+        Enum {
+            name: "Status"
+            values: {
+                "Null": 0,
+                "Ready": 1,
+                "Loading": 2,
+                "Error": 3
+            }
+        }
+        Property { name: "source"; type: "QUrl" }
+        Property { name: "name"; type: "string" }
+        Property { name: "status"; type: "Status"; isReadonly: true }
+    }
+    Component {
+        name: "QQuickFontMetrics"
+        prototype: "QObject"
+        exports: ["QtQuick/FontMetrics 2.4"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "font"; type: "QFont" }
+        Property { name: "ascent"; type: "double"; isReadonly: true }
+        Property { name: "descent"; type: "double"; isReadonly: true }
+        Property { name: "height"; type: "double"; isReadonly: true }
+        Property { name: "leading"; type: "double"; isReadonly: true }
+        Property { name: "lineSpacing"; type: "double"; isReadonly: true }
+        Property { name: "minimumLeftBearing"; type: "double"; isReadonly: true }
+        Property { name: "minimumRightBearing"; type: "double"; isReadonly: true }
+        Property { name: "maximumCharacterWidth"; type: "double"; isReadonly: true }
+        Property { name: "xHeight"; type: "double"; isReadonly: true }
+        Property { name: "averageCharacterWidth"; type: "double"; isReadonly: true }
+        Property { name: "underlinePosition"; type: "double"; isReadonly: true }
+        Property { name: "overlinePosition"; type: "double"; isReadonly: true }
+        Property { name: "strikeOutPosition"; type: "double"; isReadonly: true }
+        Property { name: "lineWidth"; type: "double"; isReadonly: true }
+        Signal {
+            name: "fontChanged"
+            Parameter { name: "font"; type: "QFont" }
+        }
+        Method {
+            name: "advanceWidth"
+            type: "double"
+            Parameter { name: "text"; type: "string" }
+        }
+        Method {
+            name: "boundingRect"
+            type: "QRectF"
+            Parameter { name: "text"; type: "string" }
+        }
+        Method {
+            name: "tightBoundingRect"
+            type: "QRectF"
+            Parameter { name: "text"; type: "string" }
+        }
+        Method {
+            name: "elidedText"
+            type: "string"
+            Parameter { name: "text"; type: "string" }
+            Parameter { name: "mode"; type: "Qt::TextElideMode" }
+            Parameter { name: "width"; type: "double" }
+            Parameter { name: "flags"; type: "int" }
+        }
+        Method {
+            name: "elidedText"
+            type: "string"
+            Parameter { name: "text"; type: "string" }
+            Parameter { name: "mode"; type: "Qt::TextElideMode" }
+            Parameter { name: "width"; type: "double" }
+        }
+    }
+    Component {
+        name: "QQuickFontValueType"
+        exports: ["QtQuick/Font 2.0"]
+        isCreatable: false
+        exportMetaObjectRevisions: [0]
+        Enum {
+            name: "FontWeight"
+            values: {
+                "Thin": 0,
+                "ExtraLight": 12,
+                "Light": 25,
+                "Normal": 50,
+                "Medium": 57,
+                "DemiBold": 63,
+                "Bold": 75,
+                "ExtraBold": 81,
+                "Black": 87
+            }
+        }
+        Enum {
+            name: "Capitalization"
+            values: {
+                "MixedCase": 0,
+                "AllUppercase": 1,
+                "AllLowercase": 2,
+                "SmallCaps": 3,
+                "Capitalize": 4
+            }
+        }
+        Enum {
+            name: "HintingPreference"
+            values: {
+                "PreferDefaultHinting": 0,
+                "PreferNoHinting": 1,
+                "PreferVerticalHinting": 2,
+                "PreferFullHinting": 3
+            }
+        }
+        Property { name: "family"; type: "string" }
+        Property { name: "styleName"; type: "string" }
+        Property { name: "bold"; type: "bool" }
+        Property { name: "weight"; type: "FontWeight" }
+        Property { name: "italic"; type: "bool" }
+        Property { name: "underline"; type: "bool" }
+        Property { name: "overline"; type: "bool" }
+        Property { name: "strikeout"; type: "bool" }
+        Property { name: "pointSize"; type: "double" }
+        Property { name: "pixelSize"; type: "int" }
+        Property { name: "capitalization"; type: "Capitalization" }
+        Property { name: "letterSpacing"; type: "double" }
+        Property { name: "wordSpacing"; type: "double" }
+        Property { name: "hintingPreference"; type: "HintingPreference" }
+        Property { name: "kerning"; type: "bool" }
+        Property { name: "preferShaping"; type: "bool" }
+        Method { name: "toString"; type: "string" }
+    }
+    Component {
+        name: "QQuickGrabGestureEvent"
+        prototype: "QObject"
+        exports: ["QtQuick/GestureEvent 2.0"]
+        isCreatable: false
+        exportMetaObjectRevisions: [0]
+        Property { name: "touchPoints"; type: "QObject"; isList: true; isReadonly: true }
+        Property { name: "dragThreshold"; type: "double"; isReadonly: true }
+        Method { name: "grab" }
+    }
+    Component {
+        name: "QQuickGradient"
+        defaultProperty: "stops"
+        prototype: "QObject"
+        exports: ["QtQuick/Gradient 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "stops"; type: "QQuickGradientStop"; isList: true; isReadonly: true }
+        Signal { name: "updated" }
+    }
+    Component {
+        name: "QQuickGradientStop"
+        prototype: "QObject"
+        exports: ["QtQuick/GradientStop 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "position"; type: "double" }
+        Property { name: "color"; type: "QColor" }
+    }
+    Component {
+        name: "QQuickGraphicsInfo"
+        prototype: "QObject"
+        exports: ["QtQuick/GraphicsInfo 2.8"]
+        isCreatable: false
+        exportMetaObjectRevisions: [0]
+        Enum {
+            name: "GraphicsApi"
+            values: {
+                "Unknown": 0,
+                "Software": 1,
+                "OpenGL": 2,
+                "Direct3D12": 3
+            }
+        }
+        Enum {
+            name: "ShaderType"
+            values: {
+                "UnknownShadingLanguage": 0,
+                "GLSL": 1,
+                "HLSL": 2
+            }
+        }
+        Enum {
+            name: "ShaderCompilationType"
+            values: {
+                "RuntimeCompilation": 1,
+                "OfflineCompilation": 2
+            }
+        }
+        Enum {
+            name: "ShaderSourceType"
+            values: {
+                "ShaderSourceString": 1,
+                "ShaderSourceFile": 2,
+                "ShaderByteCode": 4
+            }
+        }
+        Enum {
+            name: "OpenGLContextProfile"
+            values: {
+                "OpenGLNoProfile": 0,
+                "OpenGLCoreProfile": 1,
+                "OpenGLCompatibilityProfile": 2
+            }
+        }
+        Enum {
+            name: "RenderableType"
+            values: {
+                "SurfaceFormatUnspecified": 0,
+                "SurfaceFormatOpenGL": 1,
+                "SurfaceFormatOpenGLES": 2
+            }
+        }
+        Property { name: "api"; type: "GraphicsApi"; isReadonly: true }
+        Property { name: "shaderType"; type: "ShaderType"; isReadonly: true }
+        Property { name: "shaderCompilationType"; type: "ShaderCompilationType"; isReadonly: true }
+        Property { name: "shaderSourceType"; type: "ShaderSourceType"; isReadonly: true }
+        Property { name: "majorVersion"; type: "int"; isReadonly: true }
+        Property { name: "minorVersion"; type: "int"; isReadonly: true }
+        Property { name: "profile"; type: "OpenGLContextProfile"; isReadonly: true }
+        Property { name: "renderableType"; type: "RenderableType"; isReadonly: true }
+    }
+    Component {
+        name: "QQuickGrid"
+        defaultProperty: "data"
+        prototype: "QQuickBasePositioner"
+        exports: ["QtQuick/Grid 2.0", "QtQuick/Grid 2.1", "QtQuick/Grid 2.6"]
+        exportMetaObjectRevisions: [0, 1, 6]
+        Enum {
+            name: "Flow"
+            values: {
+                "LeftToRight": 0,
+                "TopToBottom": 1
+            }
+        }
+        Enum {
+            name: "HAlignment"
+            values: {
+                "AlignLeft": 1,
+                "AlignRight": 2,
+                "AlignHCenter": 4
+            }
+        }
+        Enum {
+            name: "VAlignment"
+            values: {
+                "AlignTop": 32,
+                "AlignBottom": 64,
+                "AlignVCenter": 128
+            }
+        }
+        Property { name: "rows"; type: "int" }
+        Property { name: "columns"; type: "int" }
+        Property { name: "rowSpacing"; type: "double" }
+        Property { name: "columnSpacing"; type: "double" }
+        Property { name: "flow"; type: "Flow" }
+        Property { name: "layoutDirection"; type: "Qt::LayoutDirection" }
+        Property { name: "effectiveLayoutDirection"; type: "Qt::LayoutDirection"; isReadonly: true }
+        Property { name: "horizontalItemAlignment"; revision: 1; type: "HAlignment" }
+        Property {
+            name: "effectiveHorizontalItemAlignment"
+            revision: 1
+            type: "HAlignment"
+            isReadonly: true
+        }
+        Property { name: "verticalItemAlignment"; revision: 1; type: "VAlignment" }
+        Signal {
+            name: "horizontalAlignmentChanged"
+            revision: 1
+            Parameter { name: "alignment"; type: "HAlignment" }
+        }
+        Signal {
+            name: "effectiveHorizontalAlignmentChanged"
+            revision: 1
+            Parameter { name: "alignment"; type: "HAlignment" }
+        }
+        Signal {
+            name: "verticalAlignmentChanged"
+            revision: 1
+            Parameter { name: "alignment"; type: "VAlignment" }
+        }
+    }
+    Component {
+        name: "QQuickGridMesh"
+        prototype: "QQuickShaderEffectMesh"
+        exports: ["QtQuick/GridMesh 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "resolution"; type: "QSize" }
+    }
+    Component {
+        name: "QQuickGridView"
+        defaultProperty: "data"
+        prototype: "QQuickItemView"
+        exports: [
+            "QtQuick/GridView 2.0",
+            "QtQuick/GridView 2.1",
+            "QtQuick/GridView 2.7"
+        ]
+        exportMetaObjectRevisions: [0, 1, 7]
+        attachedType: "QQuickGridViewAttached"
+        Enum {
+            name: "Flow"
+            values: {
+                "FlowLeftToRight": 0,
+                "FlowTopToBottom": 2
+            }
+        }
+        Enum {
+            name: "SnapMode"
+            values: {
+                "NoSnap": 0,
+                "SnapToRow": 1,
+                "SnapOneRow": 2
+            }
+        }
+        Property { name: "flow"; type: "Flow" }
+        Property { name: "cellWidth"; type: "double" }
+        Property { name: "cellHeight"; type: "double" }
+        Property { name: "snapMode"; type: "SnapMode" }
+        Signal { name: "highlightMoveDurationChanged" }
+        Method { name: "moveCurrentIndexUp" }
+        Method { name: "moveCurrentIndexDown" }
+        Method { name: "moveCurrentIndexLeft" }
+        Method { name: "moveCurrentIndexRight" }
+    }
+    Component { name: "QQuickGridViewAttached"; prototype: "QQuickItemViewAttached" }
+    Component {
+        name: "QQuickImage"
+        defaultProperty: "data"
+        prototype: "QQuickImageBase"
+        exports: [
+            "QtQuick/Image 2.0",
+            "QtQuick/Image 2.3",
+            "QtQuick/Image 2.5"
+        ]
+        exportMetaObjectRevisions: [0, 1, 2]
+        Enum {
+            name: "HAlignment"
+            values: {
+                "AlignLeft": 1,
+                "AlignRight": 2,
+                "AlignHCenter": 4
+            }
+        }
+        Enum {
+            name: "VAlignment"
+            values: {
+                "AlignTop": 32,
+                "AlignBottom": 64,
+                "AlignVCenter": 128
+            }
+        }
+        Enum {
+            name: "FillMode"
+            values: {
+                "Stretch": 0,
+                "PreserveAspectFit": 1,
+                "PreserveAspectCrop": 2,
+                "Tile": 3,
+                "TileVertically": 4,
+                "TileHorizontally": 5,
+                "Pad": 6
+            }
+        }
+        Property { name: "fillMode"; type: "FillMode" }
+        Property { name: "paintedWidth"; type: "double"; isReadonly: true }
+        Property { name: "paintedHeight"; type: "double"; isReadonly: true }
+        Property { name: "horizontalAlignment"; type: "HAlignment" }
+        Property { name: "verticalAlignment"; type: "VAlignment" }
+        Property { name: "mipmap"; revision: 1; type: "bool" }
+        Property { name: "autoTransform"; revision: 2; type: "bool" }
+        Signal { name: "paintedGeometryChanged" }
+        Signal {
+            name: "horizontalAlignmentChanged"
+            Parameter { name: "alignment"; type: "HAlignment" }
+        }
+        Signal {
+            name: "verticalAlignmentChanged"
+            Parameter { name: "alignment"; type: "VAlignment" }
+        }
+        Signal {
+            name: "mipmapChanged"
+            revision: 1
+            Parameter { type: "bool" }
+        }
+        Signal { name: "autoTransformChanged"; revision: 2 }
+    }
+    Component {
+        name: "QQuickImageBase"
+        defaultProperty: "data"
+        prototype: "QQuickImplicitSizeItem"
+        Enum {
+            name: "Status"
+            values: {
+                "Null": 0,
+                "Ready": 1,
+                "Loading": 2,
+                "Error": 3
+            }
+        }
+        Property { name: "status"; type: "Status"; isReadonly: true }
+        Property { name: "source"; type: "QUrl" }
+        Property { name: "progress"; type: "double"; isReadonly: true }
+        Property { name: "asynchronous"; type: "bool" }
+        Property { name: "cache"; type: "bool" }
+        Property { name: "sourceSize"; type: "QSize" }
+        Property { name: "mirror"; type: "bool" }
+        Signal {
+            name: "sourceChanged"
+            Parameter { type: "QUrl" }
+        }
+        Signal {
+            name: "statusChanged"
+            Parameter { type: "QQuickImageBase::Status" }
+        }
+        Signal {
+            name: "progressChanged"
+            Parameter { name: "progress"; type: "double" }
+        }
+    }
+    Component {
+        name: "QQuickImplicitSizeItem"
+        defaultProperty: "data"
+        prototype: "QQuickItem"
+        Property { name: "implicitWidth"; type: "double"; isReadonly: true }
+        Property { name: "implicitHeight"; type: "double"; isReadonly: true }
+    }
+    Component {
+        name: "QQuickIntValidator"
+        prototype: "QIntValidator"
+        exports: ["QtQuick/IntValidator 2.0"]
+        exportMetaObjectRevisions: [0]
+        Property { name: "locale"; type: "string" }
+        Signal { name: "localeNameChanged" }
+    }
+    Component {
+        name: "QQuickItem"
+        defaultProperty: "data"
+        prototype: "QObject"
+        exports: [
+            "QtQuick/Item 2.0",
+            "QtQuick/Item 2.1",
+            "QtQuick/Item 2.11",
+            "QtQuick/Item 2.4",
+            "QtQuick/Item 2.7"
+        ]
+        exportMetaObjectRevisions: [0, 1, 11, 2, 7]
+        Enum {
+            name: "TransformOrigin"
+            values: {
+                "TopLeft": 0,
+                "Top": 1,
+                "TopRight": 2,
+                "Left": 3,
+                "Center": 4,
+                "Right": 5,
+                "BottomLeft": 6,
+                "Bottom": 7,
+                "BottomRight": 8
+            }
+        }
+        Property { name: "parent"; type: "QQuickItem"; isPointer: true }
+        Property { name: "data"; type: "QObject"; isList: true; isReadonly: true }
+        Property { name: "resources"; type: "QObject"; isList: true; isReadonly: true }
+        Property { name: "children"; type: "QQuickItem"; isList: true; isReadonly: true }
+        Property { name: "x"; type: "double" }
+        Property { name: "y"; type: "double" }
+        Property { name: "z"; type: "double" }
+        Property { name: "width"; type: "double" }
+        Property { name: "height"; type: "double" }
+        Property { name: "opacity"; type: "double" }
+        Property { name: "enabled"; type: "bool" }
+        Property { name: "visible"; type: "bool" }
+        Property { name: "visibleChildren"; type: "QQuickItem"; isList: true; isReadonly: true }
+        Property { name: "states"; type: "QQuickState"; isList: true; isReadonly: true }
+        Property { name: "transitions"; type: "QQuickTransition"; isList: true; isReadonly: true }
+        Property { name: "state"; type: "string" }
+        Property { name: "childrenRect"; type: "QRectF"; isReadonly: true }
+        Property { name: "anchors"; type: "QQuickAnchors"; isReadonly: true; isPointer: true }
+        Property { name: "left"; type: "QQuickAnchorLine"; isReadonly: true }
+        Property { name: "right"; type: "QQuickAnchorLine"; isReadonly: true }
+        Property { name: "horizontalCenter"; type: "QQuickAnchorLine"; isReadonly: true }
+        Property { name: "top"; type: "QQuickAnchorLine"; isReadonly: true }
+        Property { name: "bottom"; type: "QQuickAnchorLine"; isReadonly: true }
+        Property { name: "verticalCenter"; type: "QQuickAnchorLine"; isReadonly: true }
+        Property { name: "baseline"; type: "QQuickAnchorLine"; isReadonly: true }
+        Property { name: "baselineOffset"; type: "double" }
+        Property { name: "clip"; type: "bool" }
+        Property { name: "focus"; type: "bool" }
+        Property { name: "activeFocus"; type: "bool"; isReadonly: true }
+        Property { name: "activeFocusOnTab"; revision: 1; type: "bool" }
+        Property { name: "rotation"; type: "double" }
+        Property { name: "scale"; type: "double" }
+        Property { name: "transformOrigin"; type: "TransformOrigin" }
+        Property { name: "transformOriginPoint"; type: "QPointF"; isReadonly: true }
+        Property { name: "transform"; type: "QQuickTransform"; isList: true; isReadonly: true }
+        Property { name: "smooth"; type: "bool" }
+        Property { name: "antialiasing"; type: "bool" }
+        Property { name: "implicitWidth"; type: "double" }
+        Property { name: "implicitHeight"; type: "double" }
+        Property { name: "containmentMask"; revision: 11; type: "QObject"; isPointer: true }
+        Property { name: "layer"; type: "QQuickItemLayer"; isReadonly: true; isPointer: true }
+        Signal {
+            name: "childrenRectChanged"
+            Parameter { type: "QRectF" }
+        }
+        Signal {
+            name: "baselineOffsetChanged"
+            Parameter { type: "double" }
+        }
+        Signal {
+            name: "stateChanged"
+            Parameter { type: "string" }
+        }
+        Signal {
+            name: "focusChanged"
+            Parameter { type: "bool" }
+        }
+        Signal {
+            name: "activeFocusChanged"
+            Parameter { type: "bool" }
+        }
+        Signal {
+            name: "activeFocusOnTabChanged"
+            revision: 1
+            Parameter { type: "bool" }
+        }
+        Signal {
+            name: "parentChanged"
+            Parameter { type: "QQuickItem"; isPointer: true }
+        }
+        Signal {
+            name: "transformOriginChanged"
+            Parameter { type: "TransformOrigin" }
+        }
+        Signal {
+            name: "smoothChanged"
+            Parameter { type: "bool" }
+        }
+        Signal {
+            name: "antialiasingChanged"
+            Parameter { type: "bool" }
+        }
+        Signal {
+            name: "clipChanged"
+            Parameter { type: "bool" }
+        }
+        Signal {
+            name: "windowChanged"
+            revision: 1
+            Parameter { name: "window"; type: "QQuickWindow"; isPointer: true }
+        }
+        Signal { name: "containmentMaskChanged"; revision: 11 }
+        Method { name: "update" }
+        Method {
+            name: "grabToImage"
+            revision: 2
+            type: "bool"
+            Parameter { name: "callback"; type: "QJSValue" }
+            Parameter { name: "targetSize"; type: "QSize" }
+        }
+        Method {
+            name: "grabToImage"
+            revision: 2
+            type: "bool"
+            Parameter { name: "callback"; type: "QJSValue" }
+        }
+        Method {
+            name: "contains"
+            type: "bool"
+            Parameter { name: "point"; type: "QPointF" }
+        }
+        Method {
+            name: "mapFromItem"
+            Parameter { type: "QQmlV4Function"; isPointer: true }
+        }
+        Method {
+            name: "mapToItem"
+            Parameter { type: "QQmlV4Function"; isPointer: true }
+        }
+        Method {
+            name: "mapFromGlobal"
+            revision: 7
+            Parameter { type: "QQmlV4Function"; isPointer: true }
+        }
+        Method {
+            name: "mapToGlobal"
+            revision: 7
+            Parameter { type: "QQmlV4Function"; isPointer: true }
+        }
+        Method { name: "forceActiveFocus" }
+        Method {
+            name: "forceActiveFocus"
+            Parameter { name: "reason"; type: "Qt::FocusReason" }
+        }
+        Method {
+            name: "nextItemInFocusChain"
+            revision: 1
+            type: "QQuickItem*"
+            Parameter { name: "forward"; type: "bool" }
+        }
+        Method { name: "nextItemInFocusChain"; revision: 1; type: "QQuickItem*" }
+        Method {
+            name: "childAt"
+            type: "QQuickItem*"
+            Parameter { name: "x"; type: "double" }
+            Parameter { name: "y"; type: "double" }
+        }
+    }
+    Component {
+        name: "QQuickItemGrabResult"
+        prototype: "QObject"
+        Property { name: "image"; type: "QImage"; isReadonly: true }
+        Property { name: "url"; type: "QUrl"; isReadonly: true }
+        Signal { name: "ready" }
+        Method {
+            name: "saveToFile"
+            type: "bool"
+            Parameter { name: "fileName"; type: "string" }
+        }
+        Method {
+            name: "saveToFile"
+            type: "bool"
+            Parameter { name: "fileName"; type: "string" }
+        }
+    }
+    Component {
+        name: "QQuickItemLayer"
+        prototype: "QObject"
+        Property { name: "enabled"; type: "bool" }
+        Property { name: "textureSize"; type: "QSize" }
+        Property { name: "sourceRect"; type: "QRectF" }
+        Property { name: "mipmap"; type: "bool" }
+        Property { name: "smooth"; type: "bool" }
+        Property { name: "wrapMode"; type: "QQuickShaderEffectSource::WrapMode" }
+        Property { name: "format"; type: "QQuickShaderEffectSource::Format" }
+        Property { name: "samplerName"; type: "QByteArray" }
+        Property { name: "effect"; type: "QQmlComponent"; isPointer: true }
+        Property { name: "textureMirroring"; type: "QQuickShaderEffectSource::TextureMirroring" }
+        Property { name: "samples"; type: "int" }
+        Signal {
+            name: "enabledChanged"
+            Parameter { name: "enabled"; type: "bool" }
+        }
+        Signal {
+            name: "sizeChanged"
+            Parameter { name: "size"; type: "QSize" }
+        }
+        Signal {
+            name: "mipmapChanged"
+            Parameter { name: "mipmap"; type: "bool" }
+        }
+        Signal {
+            name: "wrapModeChanged"
+            Parameter { name: "mode"; type: "QQuickShaderEffectSource::WrapMode" }
+        }
+        Signal {
+            name: "nameChanged"
+            Parameter { name: "name"; type: "QByteArray" }
+        }
+        Signal {
+            name: "effectChanged"
+            Parameter { name: "component"; type: "QQmlComponent"; isPointer: true }
+        }
+        Signal {
+            name: "smoothChanged"
+            Parameter { name: "smooth"; type: "bool" }
+        }
+        Signal {
+            name: "formatChanged"
+            Parameter { name: "format"; type: "QQuickShaderEffectSource::Format" }
+        }
+        Signal {
+            name: "sourceRectChanged"
+            Parameter { name: "sourceRect"; type: "QRectF" }
+        }
+        Signal {
+            name: "textureMirroringChanged"
+            Parameter { name: "mirroring"; type: "QQuickShaderEffectSource::TextureMirroring" }
+        }
+        Signal {
+            name: "samplesChanged"
+            Parameter { name: "count"; type: "int" }
+        }
+    }
+    Component {
+        name: "QQuickItemView"
+        defaultProperty: "flickableData"
+        prototype: "QQuickFlickable"
+        exports: [
+            "QtQuick/ItemView 2.1",
+            "QtQuick/ItemView 2.3",
+            "QtQuick/ItemView 2.7"
+        ]
+        isCreatable: false
+        exportMetaObjectRevisions: [1, 2, 7]
+        Enum {
+            name: "LayoutDirection"
+            values: {
+                "LeftToRight": 0,
+                "RightToLeft": 1,
+                "VerticalTopToBottom": 2,
+                "VerticalBottomToTop": 3
+            }
+        }
+        Enum {
+            name: "VerticalLayoutDirection"
+            values: {
+                "TopToBottom": 2,
+                "BottomToTop": 3
+            }
+        }
+        Enum {
+            name: "HighlightRangeMode"
+            values: {
+                "NoHighlightRange": 0,
+                "ApplyRange": 1,
+                "StrictlyEnforceRange": 2
+            }
+        }
+        Enum {
+            name: "PositionMode"
+            values: {
+                "Beginning": 0,
+                "Center": 1,
+                "End": 2,
+                "Visible": 3,
+                "Contain": 4,
+                "SnapPosition": 5
+            }
+        }
+        Property { name: "model"; type: "QVariant" }
+        Property { name: "delegate"; type: "QQmlComponent"; isPointer: true }
+        Property { name: "count"; type: "int"; isReadonly: true }
+        Property { name: "currentIndex"; type: "int" }
+        Property { name: "currentItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "keyNavigationWraps"; type: "bool" }
+        Property { name: "keyNavigationEnabled"; revision: 7; type: "bool" }
+        Property { name: "cacheBuffer"; type: "int" }
+        Property { name: "displayMarginBeginning"; revision: 2; type: "int" }
+        Property { name: "displayMarginEnd"; revision: 2; type: "int" }
+        Property { name: "layoutDirection"; type: "Qt::LayoutDirection" }
+        Property { name: "effectiveLayoutDirection"; type: "Qt::LayoutDirection"; isReadonly: true }
+        Property { name: "verticalLayoutDirection"; type: "VerticalLayoutDirection" }
+        Property { name: "header"; type: "QQmlComponent"; isPointer: true }
+        Property { name: "headerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "footer"; type: "QQmlComponent"; isPointer: true }
+        Property { name: "footerItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "populate"; type: "QQuickTransition"; isPointer: true }
+        Property { name: "add"; type: "QQuickTransition"; isPointer: true }
+        Property { name: "addDisplaced"; type: "QQuickTransition"; isPointer: true }
+        Property { name: "move"; type: "QQuickTransition"; isPointer: true }
+        Property { name: "moveDisplaced"; type: "QQuickTransition"; isPointer: true }
+        Property { name: "remove"; type: "QQuickTransition"; isPointer: true }
+        Property { name: "removeDisplaced"; type: "QQuickTransition"; isPointer: true }
+        Property { name: "displaced"; type: "QQuickTransition"; isPointer: true }
+        Property { name: "highlight"; type: "QQmlComponent"; isPointer: true }
+        Property { name: "highlightItem"; type: "QQuickItem"; isReadonly: true; isPointer: true }
+        Property { name: "highlightFollowsCurrentItem"; type: "bool" }
+        Property { name: "highlightRangeMode"; type: "HighlightRangeMode" }
+        Property { name: "preferredHighlightBegin"; type: "double" }
+        Property { name: "preferredHighlightEnd"; type: "double" }
+        Property { name: "highlightMoveDuration"; type: "int" }
+        Signal { name: "keyNavigationEnabledChanged"; revision: 7 }
+        Signal { name: "populateTransitionChanged" }
+        Signal { name: "addTransitionChanged" }
+        Signal { name: "addDisplacedTransitionChanged" }
+        Signal { name: "moveTransitionChanged" }
+        Signal { name: "moveDisplacedTransitionChanged" }
+        Signal { name: "removeTransitionChanged" }
+        Signal { name: "removeDisplacedTransitionChanged" }
+        Signal { name: "displacedTransitionChanged" }
+        Method {
+            name: "positionViewAtIndex"
+            Parameter { name: "index"; type: "int" }
+            Parameter { name: "mode"; type: "int" }
+        }
+        Method {
+            name: "indexAt"
+            type: "int"
+            Parameter { name: "x"; type: "double" }
+            Parameter { name: "y"; type: "double" }
+        }
+        Method {
+            name: "itemAt"
+            type: "QQuickItem*"
+            Parameter { name: "x"; type: "double" }
+            Parameter { name: "y"; type: "double" }
+        }
+        Method { name: "positionViewAtBeginning" }
+        Method { name: "positionViewAtEnd" }
+        Method { name: "forceLayout"; revision: 1 }
+    }
+    Component {
+        name: "QQuickItemViewAttached"
+        prototype: "QObject"
+        Property { name: "view"; type: "QQuickItemView"; isReadonly: true; isPointer: true }
+        Property { name: "isCurrentItem"; type: "bool"; isReadonly: true }
+        Property { name: "
